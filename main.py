@@ -20,8 +20,10 @@ os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
 # print(sys.argv)
 apiKey = sys.argv[1]
 prompt = sys.argv[2]
+imagePath = sys.argv[3]
 
 # os.environ['STABILITY_KEY'] = 'sk-65sRgPmX0hDordYiIiyz5ytQVsztWvhfuA1SxAtcsZlgTjnQ'
+
 os.environ['STABILITY_KEY'] = apiKey
 
 
@@ -66,4 +68,4 @@ for resp in answers:
                 "Please modify the prompt and try again.")
         if artifact.type == generation.ARTIFACT_IMAGE:
             img = Image.open(io.BytesIO(artifact.binary))
-            img.save(str(artifact.seed)+ ".png") # Save our generated images with their seed number as the filename.
+            img.save(f"{imagePath}/image.png") # Save our generated images with their seed number as the filename.
